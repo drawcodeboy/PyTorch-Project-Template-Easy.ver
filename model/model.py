@@ -1,22 +1,8 @@
-import torch.nn as nn
-import torch.nn.functional as F
-from base import BaseModel
+import torch
+from torch import nn
 
+# 모델을 구현할 스크립트이다.
 
-class MnistModel(BaseModel):
-    def __init__(self, num_classes=10):
-        super().__init__()
-        self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
-        self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
-        self.conv2_drop = nn.Dropout2d()
-        self.fc1 = nn.Linear(320, 50)
-        self.fc2 = nn.Linear(50, num_classes)
+# 어떤 아키텍처를 사용한다면, 해당하는 이름으로 스크립트 이름을 바꾸고, 클래스 이름을 짓고
 
-    def forward(self, x):
-        x = F.relu(F.max_pool2d(self.conv1(x), 2))
-        x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
-        x = x.view(-1, 320)
-        x = F.relu(self.fc1(x))
-        x = F.dropout(x, training=self.training)
-        x = self.fc2(x)
-        return F.log_softmax(x, dim=1)
+# 아니라면, 모델의 이름을 정해서 스크립트 이름과 클래스 이름을 지어라.

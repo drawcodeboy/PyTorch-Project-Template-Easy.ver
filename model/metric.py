@@ -1,5 +1,6 @@
 import torch
 
+# 아래와 같이 필요한 Metric을 함수 형태로 구현할 것
 
 def accuracy(output, target):
     with torch.no_grad():
